@@ -14,6 +14,20 @@ class AppColors {
   static const primaryPink = Color(0xFFE91E63);
   static const secondaryPink = Color(0xFFF48FB1);
 
+  static const primaryWhite = Color(0xFFFFFFFF);
+  static const primaryBlack = Color(0xFF000000);
+
+  static const primaryOrange = Color(0xFFFF9800);
+
+  static List<Map<String, dynamic>> themes = [
+    {'id': 'blue', 'name': 'Azul', 'color': AppColors.primaryBlue},
+    {'id': 'purple', 'name': 'Roxo', 'color': AppColors.primaryPurple},
+    {'id': 'pink', 'name': 'Rosa', 'color': AppColors.primaryPink},
+    {'id': 'white', 'name': 'Branco', 'color': AppColors.primaryWhite},
+    {'id': 'black', 'name': 'Preto', 'color': AppColors.primaryBlack},
+    {'id': 'orange', 'name': 'Laranja', 'color': AppColors.primaryOrange}
+  ];
+
   // generate color scheme based on selected color
   static ColorScheme getColorScheme(bool isDarkMode, String themeColor) {
 

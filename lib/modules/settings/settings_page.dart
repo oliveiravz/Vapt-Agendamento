@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vapt_agendamento/shared/widgets/menu_drawer.dart';
-
+import 'package:vapt_agendamento/core/app_colors.dart';
+import 'package:vapt_agendamento/core/theme_provider.dart';
 
 class SettingsPage extends StatelessWidget{
   const SettingsPage({super.key});
@@ -77,19 +78,38 @@ class SettingsPage extends StatelessWidget{
                       Divider(indent: 20, endIndent: 20),
 
                       ExpansionTile(
-                        leading: Icon(Icons.color_lens_outlined),
-                        title: Text('Cor do App'),
+                        leading: const Icon(Icons.color_lens_outlined),
+                        title: const Text('Cor do App'),
                         shape: Border.all(color: Colors.transparent),
-                        children :[
-                          _buildColorsItem(context, 'blue', () {
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Row(
+                                children: AppColors.themes.map((theme) {
+                                  return _buildHorizontalItem(
+                                    theme['id'], 
+                                    theme['name'], 
+                                    theme['color'], 
+                                    () {
 
-                          })
-                        ]
+                                      themeProvider.updateTheme(theme['id']); 
+                                    },
+
+                                    // isSelected: themeProvider.selectedColor == theme['id'],
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
 
                       Divider(indent: 20, endIndent: 20),
 
-                      _buildItem(context, Icons.logout, 'Sair', () {}, isDestructive: true),
+                      _buildItem(context, Icons.delete, 'Excluir tudo', () {}, isDestructive: true),
                     ],
                   ),
                 ),
@@ -128,36 +148,35 @@ class SettingsPage extends StatelessWidget{
     );
   }
 
-  Widget _buildColorsItem(BuildContext context, String color, VoidCallback onTap) {
-    return SizedBox(
-      height: 100,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        children: [
-          // _buildHorizontalItem(Icons.palette, 'Temas'),
-          // _buildHorizontalItem(Icons.language, 'Idioma'),
-          // _buildHorizontalItem(Icons.cloud, 'Backup'),
-          // _buildHorizontalItem(Icons.devices, 'Dispositivos'),
-        ],
+  Widget _buildHorizontalItem(String id, String label, Color color, VoidCallback onTap) {
 
-      )
+    // Verificamos se este item é o tema atual
+    bool isSelected = themeProvider.selectedColor == id;
+
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Column(
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: color,
+              child: isSelected 
+                ? const Icon(Icons.check, color: Colors.white) 
+                : null,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              label, 
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              )
+            ),
+          ],
+        ),
+      ),
     );
   }
-
-  Widget _buildHorizontalItem(String color) {
-  return Padding(
-    padding: const EdgeInsets.only(right: 20),
-    child: Column(
-      children: [
-        CircleAvatar(
-          radius: 25,
-          // backgroundColor: Colors()
-        ),
-        SizedBox(height: 8),
-        // Text(label, style: TextStyle(fontSize: 12)),
-      ],
-    ),
-  );
-}
 }
