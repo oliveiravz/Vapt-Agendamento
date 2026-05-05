@@ -1,17 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:vapt_agendamento/core/app_colors.dart'; 
 
-final themeProvider = ThemeProvider();
-
-class ThemeProvider extends ChangeNotifier
-{
+class ThemeProvider extends ChangeNotifier {
   String _selectedColor = 'blue';
 
-  String get selectedColor => _selectedColor;
+  ThemeMode _themeMode = ThemeMode.system; 
 
-  void updateTheme(String newColor)
-  {
-    _selectedColor = newColor;
-    notifyListeners();
-    
+  String get selectedColor => _selectedColor;
+  ThemeMode get themeMode => _themeMode;
+
+  Color get currentColor {
+    final theme = AppColors.themes.firstWhere(
+      (t) => t['id'] == _selectedColor,
+      orElse: () => AppColors.themes.first,
+    );
+    return theme['color'] as Color;
+  }
+
+  void updateThemeMode(ThemeMode newMode) {
+    if (_themeMode != newMode) {
+      _themeMode = newMode;
+      notifyListeners();
+    }
+  }
+
+  void updateTheme(String newColor) {
+    if (_selectedColor != newColor) {
+      _selectedColor = newColor;
+      notifyListeners();
+    }
   }
 }
