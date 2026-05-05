@@ -17,23 +17,23 @@ class HomePage extends StatelessWidget {
           children: [
             // customized header
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 32),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     'Vapt',
-                    style: TextStyle(
-                      fontSize: 32,
+                    style: Theme.of(context).textTheme.displayLarge?.copyWith(
                       color: Theme.of(context).colorScheme.onPrimary,
-                      fontWeight: FontWeight.bold,
-                      fontFamily:
-                          'Cursive', 
+                      height: 1.0,
                     ),
                   ),
                   // Button that opens Drawer
                   Builder(
                     builder: (context) => IconButton(
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(),
                       icon:
                           Icon(Icons.menu, color: Theme.of(context).colorScheme.onPrimary, size: 30),
                       onPressed: () => Scaffold.of(context).openDrawer(),
@@ -46,6 +46,7 @@ class HomePage extends StatelessWidget {
             Expanded(
               child: Container(
                 width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
                 decoration: BoxDecoration(
                               color: Theme.of(context).colorScheme.surfaceContainerHighest, // background that uses a very light tone from the primary color
                               borderRadius: BorderRadius.only(
@@ -54,23 +55,27 @@ class HomePage extends StatelessWidget {
                               ),
                             ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    // const SizedBox(height: 200),
+                    const Spacer(),
                     Text(
                       'Vazio aqui',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    // const SizedBox(height: 120),
+                    const Spacer(),
                     Text(
                       'Que tal adicionar seu\nprimeiro lembrete?',
                       textAlign: TextAlign.center,
-                      style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant,
-                                      fontSize: 16),
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),

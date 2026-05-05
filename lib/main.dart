@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vapt_agendamento/core/app_colors.dart';
 import 'package:vapt_agendamento/core/theme_provider.dart';
+import 'package:vapt_agendamento/core/app_theme.dart';
 import 'package:vapt_agendamento/modules/home/home_page.dart';
 import 'package:vapt_agendamento/modules/settings/settings_page.dart';
 import 'package:vapt_agendamento/modules/background/background_page.dart';

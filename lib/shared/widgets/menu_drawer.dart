@@ -13,12 +13,23 @@ class MenuDrawer extends StatelessWidget {
         children: [
           DrawerHeader(
             decoration: BoxDecoration(color: Theme.of(context).colorScheme.primary),
-            child: Text('Menu Vapt', style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontSize: 24)),
+            child: Center(
+              child: 
+                Text('Menu', 
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  )
+              ),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.home),
-            title: Text('Início'),
-            textColor: Theme.of(context).colorScheme.onSurfaceVariant,
+            title: Text('Início',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              )
+            ),
             iconColor: Theme.of(context).colorScheme.onSurfaceVariant,
             onTap: () {
               Navigator.pop(context);
@@ -27,8 +38,11 @@ class MenuDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Configurações'),
-            textColor: Theme.of(context).colorScheme.onSurfaceVariant,
+            title: Text('Configurações',
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              )
+            ),
             iconColor: Theme.of(context).colorScheme.onSurfaceVariant,
             onTap: () {
               Navigator.pop(context);
